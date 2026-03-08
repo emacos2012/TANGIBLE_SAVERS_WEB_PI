@@ -1,0 +1,54 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow anyone to read estates, products, and demo data
+    match /estates/{estateId} {
+      allow read: if true;
+      allow write: if true; // Allow for demo purposes
+    }
+    
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if true; // Allow for demo purposes
+    }
+    
+    match /deliveryTasks/{taskId} {
+      allow read: if true;
+      allow write: if true; // Allow for demo purposes
+    }
+    
+    match /moverRequests/{requestId} {
+      allow read: if true;
+      allow write: if true; // Allow for demo purposes
+    }
+    
+    // User profiles - allow read/write for demo
+    match /users/{userId} {
+      allow read: if true;
+      allow write: if true; // Allow for demo purposes
+    }
+    
+    // Orders - allow all for demo
+    match /orders/{orderId} {
+      allow read: if true;
+      allow create: if true;
+      allow update: if true;
+      allow delete: if true;
+    }
+    
+    // Payments - allow all for demo
+    match /payments/{paymentId} {
+      allow read: if true;
+      allow create: if true;
+      allow update: if true;
+      allow delete: if true;
+    }
+    
+    // For demo/seed data - allow public read/write
+    match /seed/{docId} {
+      allow read: if true;
+      allow write: if true;
+    }
+  }
+}

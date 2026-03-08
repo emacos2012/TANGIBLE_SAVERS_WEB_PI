@@ -1,0 +1,76 @@
+ @import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  /* Professional Color Palette */
+  --navy-dark: #1A237E;
+  --navy-light: #283593;
+  --gold: #FFD700;
+  --gold-dark: #FFC700;
+  --gold-light: #FFE44D;
+  --green-success: #4CAF50;
+  --red-error: #F44336;
+  --blue-info: #2196F3;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-navy-dark: var(--navy-dark);
+  --color-navy-light: var(--navy-light);
+  --color-gold-light: var(--gold-light);
+  --color-gold: var(--gold);
+  --color-gold-dark: var(--gold-dark);
+  --color-success: var(--green-success);
+  --color-error: var(--red-error);
+  --color-info: var(--blue-info);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Tangible Savers Theme */
+.ts-navy {
+  color: var(--navy-dark);
+}
+
+.ts-navy-bg {
+  background-color: var(--navy-dark);
+}
+
+.ts-gold {
+  color: var(--gold);
+}
+
+.ts-gold-bg {
+  background-color: var(--gold);
+}
+
+.ts-housing {
+  @apply bg-gradient-to-r from-[#1A237E] to-[#283593];
+}
+
+.ts-savers {
+  @apply bg-gradient-to-r from-[#FFD700] to-[#FFC700];
+}
+
+.button-primary {
+  @apply bg-[#1A237E] text-white hover:bg-[#283593] px-6 py-3 rounded-lg font-semibold transition;
+}
+
+.button-gold {
+  @apply bg-[#FFD700] text-[#1A237E] hover:bg-[#FFC700] px-6 py-3 rounded-lg font-semibold transition;
+}
