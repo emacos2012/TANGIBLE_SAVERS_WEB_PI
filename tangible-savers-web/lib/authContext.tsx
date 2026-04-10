@@ -19,26 +19,26 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // Listen for Firebase auth state changes
   useEffect(() => {
     // Wait for Pi SDK to be ready before initializing
+    let checkInterval: NodeJS.Timeout | null = null;
+    let timeoutId: NodeJS.Timeout | null = null;
+    
     const initPiWhenReady = () => {
       // Check if Pi SDK is already ready
       if ((window as any).__PI_SDK_READY__ || (window as any).Pi) {
         initializePiSDK().catch(err => console.error('Failed to initialize Pi SDK:', err));
       } else {
         // Wait for the script to set the flag
-        const checkInterval = setInterval(() => {
+        checkInterval = setInterval(() => {
           if ((window as any).__PI_SDK_READY__ || (window as any).Pi) {
-            clearInterval(checkInterval);
+            if (checkInterval) clearInterval(checkInterval);
             initializePiSDK().catch(err => console.error('Failed to initialize Pi SDK:', err));
           }
         }, 500);
-        
-        // Clean up interval on unmount
-        return () => clearInterval(checkInterval);
       }
     };
     
     // Give the script a moment to load first
-    const timeoutId = setTimeout(initPiWhenReady, 1000);
+    timeoutId = setTimeout(initPiWhenReady, 1000);
     
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       try {
@@ -75,7 +75,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     return () => {
       unsubscribe();
-      clearTimeout(timeoutId);
+      if (timeoutId) clearTimeout(timeoutId);
+      if (checkInterval) clearInterval(checkInterval);
     };
   }, []);
 
@@ -132,7 +133,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         role: 'admin' as UserRole,
         estateLocation: '',
         savedAssets: [],
-        createdAt: userSnap.exists() ? (userSnap.data() as any).createdAt : new Date(),
+        createdAt: userSnap.exists() ? (userSnap.data() as User)?.createdAt ?? new Date() : new Date(),
         updatedAt: new Date(),
       };
 

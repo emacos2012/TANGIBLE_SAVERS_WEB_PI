@@ -25,7 +25,7 @@ export const PiProvider = ({ children }: { children: React.ReactNode }) => {
       // Check for either the global flag or the Pi object
       if ((window as any).__PI_SDK_READY__ || (window as any).Pi) {
         try {
-          (window as any).Pi.init({ version: "1.5", sandbox: true }); 
+          (window as any).Pi.init({ version: "2.0", appName: 'Tangible Savers' }); 
           setIsLoaded(true);
           setError(null);
         } catch (err) {
