@@ -1,1 +1,1 @@
-- [x] Step 1: Resolve .gitignore merge conflicts
+- [x] Step 1: Resolve .gitignore merge conflicts&#10;- [x] Step 2: Stage changes (git add)&#10;- [x] Step 3: Commit merge resolution
