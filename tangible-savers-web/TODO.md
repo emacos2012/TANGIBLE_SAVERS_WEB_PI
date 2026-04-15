@@ -1,28 +1,36 @@
-# Tangible Savers Web - Fix Issues TODO
+# Fix Mistakes & Deploy to GitHub - Progress Tracker
 
-## Current Task Progress
-✅ Plan approved  
-✅ 1. Fixed lib/firebase.ts - Removed hardcoded credentials, added env validation
+## Approved Plan Steps:
 
-## Implementation Steps (from approved plan):
+### 1. Fix next.config.ts (user priority)
+- [✅] Add TypeScript safety for env vars
+- [✅] Ensure React 19 / Next 16 compat (experimental if needed)
+- [✅] Verify no TS errors
 
-### Phase 1: Security Fixes (High Priority)
-- [✅] 1. Remove hardcoded Firebase credentials from lib/firebase.ts ✓
-- [✅] 2. Fix hardcoded service account path in lib/firebase-admin.ts ✓
-- [✅] 3. Delete sensitive validation files ✓
-- [✅] 4. Create clean validation.md ✓
+**Current Status: Step 1 Complete - Step 2 Next**
 
-### Phase 2: Config Fixes
-- [✅] 5. Fix next.config.ts (remove invalid turbopack, add proper env/images config) ✓
-- [✅] 6. Add null safety to authContext.tsx ✓
+### 2. Complete lib/firebase-admin.ts
+- [✅] Add proper Admin SDK init with service account env
+- [✅] Export verifyIdToken, adminFirestore, adminAuth
 
-### Phase 3: Verification
-- [✅] 7. Create .env.example template ✓
-- [✅] 8. Update .gitignore for env files ✓
-- [ ] 9. Run npm install, lint, build tests
-- [ ] 10. Update TODO files
+### 3. Polish lib/piAuth.ts
+- [ ] Add validation to updateUserProfile
 
-**Next Step:** Phase 1 #2 - lib/firebase-admin.ts
+### 4. Update TODO files
+- [✅] Mark all items in TODO_FIXES.md ✅
+- [✅] Update other TODOs progress
 
-**Status:** In Progress
+**Current Status: Step 4 Complete - Step 5 Verify**
 
+### 5. Verify & Test
+- [ ] npm run lint
+- [ ] npm run build
+- [ ] npm run dev (test key pages)
+
+### 6. GitHub Setup & Push
+- [ ] Check/install gh CLI
+- [ ] git add/commit all fixes
+- [ ] gh repo create tangible-savers-web --public (or private)
+- [ ] git push origin main
+
+**Current Status: Starting Step 1**
