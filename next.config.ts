@@ -1,5 +1,4 @@
 import type { NextConfig } from 'next';
-import path from 'path';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -21,19 +20,19 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_FIREBASE_APP_ID: process.env.NEXT_PUBLIC_FIREBASE_APP_ID!,
     NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID!,
   },
-// Runtime env validation for build-time checks
-    webpack: (config) => {
-      if(config.resolve.alias) {
-        config.resolve.alias['@'] = path.resolve('./');
-      }
-      return config;
+
+  // Move typedRoutes out of experimental
+  typedRoutes: true,
+
+  // Tell Turbopack we acknowledge it and to work with our path alias
+  turbopack: {
+    resolveAlias: {
+      '@': './',
     },
-  experimental: {
-    typedRoutes: true,
-},
+  },
+
   // TrailingSlash disabled for cleaner URLs
   trailingSlash: false,
 };
 
 export default nextConfig;
-
